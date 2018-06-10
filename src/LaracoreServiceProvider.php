@@ -1,6 +1,6 @@
 <?php
 
-namespace Laracore5;
+namespace Ekown\Laracore5;
 
 use Illuminate\Support\ServiceProvider;
 

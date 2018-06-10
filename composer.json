@@ -32,7 +32,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laracore5\\LaracoreServiceProvider"
+                "Ekown\\Laracore5\\LaracoreServiceProvider"
             ],
             "aliases": {
                 "FormLogger": "Laracore5\\Facades\\FormFacade"
