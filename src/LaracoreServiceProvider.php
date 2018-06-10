@@ -28,7 +28,5 @@ class LaracoreServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/path/to/config/laracore.php', 'laracore'
         );
-
-        $this->app->bind( )
     }
 }
