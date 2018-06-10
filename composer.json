@@ -24,7 +24,7 @@
     "autoload": {
         "psr-4": {
             "Audit\\": "src/app/Audit"
-        },
+        }
     },
     "require-dev": {
         "orchestra/testbench": "~3.5"
