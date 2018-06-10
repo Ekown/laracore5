@@ -1,6 +1,6 @@
 <?php
 
-namespace Laracore5\Src\App\Facades;
+namespace Laracore5\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
