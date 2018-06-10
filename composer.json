@@ -21,6 +21,11 @@
             "url": "https://github.com/Ekown/laracore5.git"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Audit\\": "src/app/Audit"
+        },
+    },
     "require-dev": {
         "orchestra/testbench": "~3.5"
     },
@@ -30,7 +35,7 @@
                 "Ekown\\Laracore5\\LaracoreServiceProvider"
             ],
             "aliases": {
-                "Logger": "Ekown\\Laracore5\\Facades\\LaracoreFacade"
+                "FormLogger": "Ekown\\Laracore5\\Facades\\FormFacade"
             }
         }
     }
