@@ -1,0 +1,37 @@
+{
+    "name": "ekown/laracore5",
+    "description": "Contains the core processes for Laravel 5.5 applications created by Eron Tancioco.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eron Tancioco",
+            "email": "tancioco.eron@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php" : ">=7.0",
+        "illuminate/support": ">=5.5",
+        "monolog/monolog": "^1.21"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:businessswitch/bswdatabase.git"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "~3.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ekown\\Laracore5\\LaracoreServiceProvider"
+            ],
+            "aliases": {
+                "Logger": "Ekown\\Laracore5\\Facades\\LaracoreFacade"
+            }
+        }
+    }
+}
