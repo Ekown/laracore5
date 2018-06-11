@@ -9,7 +9,7 @@
             "email": "tancioco.eron@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {
         "php" : ">=7.0",
         "illuminate/support": ">=5.5",
@@ -23,7 +23,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Audit\\": "src/app/Audit"
+            "Ekown\\Laracore5\\": "src/"
         }
     },
     "require-dev": {
@@ -32,11 +32,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ekown\\Laracore5\\LaracoreServiceProvider::class"
-            ],
-            "aliases": {
-                "FormLogger": "Laracore5\\Facades\\FormFacade::class"
-            }
+                "Ekown\\Laracore5\\LaracoreServiceProvider"
+            ]
         }
     }
 }
