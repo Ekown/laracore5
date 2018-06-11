@@ -13,8 +13,12 @@ class LaracoreServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Sets the path of the package's config files
+        $this->mergeConfigFrom(__DIR__ . '/config/config.php', 'contact');
+
+        // Sets the path of the package's publish files
         $this->publishes([
-            __DIR__.'/path/to/config/laracore.php' => config_path('laracore.php'),
+            __DIR__.'/config/config.php' => config_path('laracore.php'),
         ]);
     }
 
@@ -25,8 +29,6 @@ class LaracoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-            __DIR__.'/path/to/config/laracore.php', 'laracore'
-        );
+
     }
 }
