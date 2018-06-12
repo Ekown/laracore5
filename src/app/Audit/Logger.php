@@ -1,6 +1,6 @@
 <?php
 
-namespace Audit;
+namespace Ekown\Laracore5\App\Audit;
 
 use Monolog\Formatter\JsonFormatter;
 use Monolog\Handler\AbstractProcessingHandler;
@@ -15,13 +15,11 @@ use Monolog\Processor\WebProcessor;
 
 class Logger extends \Monolog\Logger
 {
-
     // Defaults
     const DEFAULT_NAME = 'Application';
     const DEFAULT_PATH = 'php://stdout';
     const DEFAULT_HANDLER = StreamHandler::class;
     const DEFAULT_MINIMUM_LEVEL = \Monolog\Logger::DEBUG;
-
     /**
      * Logger constructor.
      *
@@ -34,11 +32,10 @@ class Logger extends \Monolog\Logger
         $handlerName = self::DEFAULT_HANDLER
     ) {
         parent::__construct(self::DEFAULT_NAME);
-
         $this->setupHandlers($path, $minimumLevel, $handlerName);
         $this->setupProcessors();
     }
-    
+
     /**
      * @param string $message
      * @param \Exception $e
@@ -51,10 +48,8 @@ class Logger extends \Monolog\Logger
             'code' => $e->getCode(),
             'exception_class' => get_class($e)
         ];
-
         $this->addRecord($level, $message, $exceptionToArray);
     }
-
     /**
      * @param int $level
      * @param string $message
@@ -68,17 +63,14 @@ class Logger extends \Monolog\Logger
             $context['ip_address'] = $this->getIpAddress();
             return parent::addRecord($level, $message, $context);
         } catch (\Exception $e) {}
-
         return false;
     }
-
     /**
      * @return string
      */
     private function getIpAddress()
     {
         $ipAddress = '';
-
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ipAddress = $_SERVER['HTTP_CLIENT_IP'];
         } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -86,10 +78,8 @@ class Logger extends \Monolog\Logger
         } elseif (!empty($_SERVER['REMOTE_ADDR'])) {
             $ipAddress = $_SERVER['REMOTE_ADDR'];
         }
-
         return $ipAddress;
     }
-
     /**
      * @return $this
      */
@@ -100,16 +90,13 @@ class Logger extends \Monolog\Logger
         $introspection = new IntrospectionProcessor();
         $web = new WebProcessor();
         $uid = new UidProcessor();
-
         $this->pushProcessor($memoryUsage);
         $this->pushProcessor($memoryPeak);
         $this->pushProcessor($introspection);
         $this->pushProcessor($web);
         $this->pushProcessor($uid);
-
         return $this;
     }
-
     /**
      * @param string $path
      * @param int $minimumLevel
@@ -119,16 +106,13 @@ class Logger extends \Monolog\Logger
     private function setupHandlers($path, $minimumLevel, $handlerName)
     {
         $formatter = new JsonFormatter();
-
         $handler = $this->getHandlerInstance(
             $handlerName,
             $minimumLevel,
             $path
         );
         $handler->setFormatter($formatter);
-
         $this->pushHandler($handler);
-
         return $this;
     }
     /**
@@ -151,5 +135,4 @@ class Logger extends \Monolog\Logger
                 return new StreamHandler(self::DEFAULT_PATH, $minimumLevel);
         }
     }
-
 }

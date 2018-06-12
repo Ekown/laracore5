@@ -1,9 +1,9 @@
 <?php
 
-namespace Audit\Flow\Login;
+namespace Ekown\Laracore5\App\Audit\Flow;
 
-use Audit\Logger;
-use Audit\Schema\LoginSchema;
+use Ekown\Laracore5\App\Audit\Logger;
+use Ekown\Laracore5\App\Audit\Schema\LoginSchema;
 
 class Form
 {
@@ -25,7 +25,7 @@ class Form
     /**
      * Form Logger constructor.
      *
-     * @param Logger         $logger
+     * @param Logger $logger
      */
     public function __construct(Logger $logger)
     {
@@ -39,7 +39,8 @@ class Form
     {
         try {
             if ($this->enabled) {
-                $logger  = $this->logger->withName(LoginSchema::LOGIN_FORM_DISPLAYED['name']);
+                $name = LoginSchema::LOGIN_FORM_DISPLAYED['name'];
+                $logger  = $this->logger->withName($name);
                 $message = LoginSchema::LOGIN_FORM_DISPLAYED['message'];
 
                 $logger->addRecord(Logger::NOTICE, $name, [

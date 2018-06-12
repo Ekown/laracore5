@@ -1,6 +1,6 @@
 <?php
 
-namespace Audit\Schema;
+namespace Ekown\Laracore5\App\Audit\Schema;
 
 class LoginSchema
 {

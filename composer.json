@@ -33,7 +33,10 @@
         "laravel": {
             "providers": [
                 "Ekown\\Laracore5\\LaracoreServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Form": "Ekown\\Laracore5\\Facades\\Form"
+            }
         }
     }
 }
