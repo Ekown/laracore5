@@ -5,7 +5,7 @@ namespace Ekown\Laracore5\App\Audit\Flow;
 use Ekown\Laracore5\App\Audit\Logger;
 use Ekown\Laracore5\App\Audit\Schema\LoginSchema;
 
-class Form
+class Processing
 {
     /**
      * @var float
@@ -36,17 +36,16 @@ class Form
     }
 
     /**
-     *
      * @param void
      *
      */
-    public function loginFormCreated()
+    public function loginRetrieveDetailsSuccess()
     {
         try {
             if ($this->enabled) {
-                $name = LoginSchema::LOGIN_FORM_CREATED['name'];
+                $name = LoginSchema::LOGIN_RETRIEVE_DETAILS_SUCCESS['name'];
                 $logger  = $this->logger->withName($name);
-                $message = LoginSchema::LOGIN_FORM_CREATED['message'];
+                $message = LoginSchema::LOGIN_RETRIEVE_DETAILS_SUCCESS['message'];
 
                 $logger->addRecord(Logger::NOTICE, $name, [
                     'message' => $message
@@ -58,17 +57,38 @@ class Form
     }
 
     /**
-     *
-     * @param void
+     * @param string $exception
+     * @param string $message
      *
      */
-    public function loginFormDisplayed()
+    public function loginRetrieveDetailsFailed(string $exception, string $message)
     {
         try {
             if ($this->enabled) {
-                $name = LoginSchema::LOGIN_FORM_DISPLAYED['name'];
+                $name = LoginSchema::LOGIN_RETRIEVE_DETAILS_FAILED['name'];
                 $logger  = $this->logger->withName($name);
-                $message = LoginSchema::LOGIN_FORM_DISPLAYED['message'];
+
+                $logger->addRecord(Logger::NOTICE, $name, [
+                    'exception' => $exception . 'Exception',
+                    'message' => $message
+                ]);
+            }
+        } catch (\Exception $e) {
+            \error_log($e->getMessage());
+        }
+    }
+
+    /**
+     * @param void
+     *
+     */
+    public function loginSuccess()
+    {
+        try {
+            if ($this->enabled) {
+                $name = LoginSchema::LOGIN_SUCCESS['name'];
+                $logger  = $this->logger->withName($name);
+                $message = LoginSchema::LOGIN_SUCCESS['message'];
 
                 $logger->addRecord(Logger::NOTICE, $name, [
                     'message' => $message
@@ -80,20 +100,20 @@ class Form
     }
 
     /**
-     * @param array $payload
+     * @param string $exception
+     * @param string $message
      *
      */
-    public function loginFormSubmit(array $payload)
+    public function loginFailed(string $exception, string $message)
     {
         try {
             if ($this->enabled) {
-                $name = LoginSchema::LOGIN_FORM_SUBMIT['name'];
+                $name = LoginSchema::LOGIN_FAILED['name'];
                 $logger  = $this->logger->withName($name);
-                $message = LoginSchema::LOGIN_FORM_SUBMIT['message'];
 
-                $logger->addRecord(Logger::NOTICE, $name, [
-                    'message' => $message,
-                    'email' => $payload['email']
+                $logger->addRecord(Logger::ALERT, $name, [
+                    'exception' => $exception,
+                    'message' => $message
                 ]);
             }
         } catch (\Exception $e) {
