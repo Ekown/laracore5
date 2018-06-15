@@ -3,7 +3,8 @@
 namespace Ekown\Laracore5;
 
 use Illuminate\Support\ServiceProvider;
-use Ekown\Laracore5\App\Audit\Flow\Form;
+use Ekown\Laracore5\App\Audit\Flow\Login\Form as LoginFormLogger;
+use Ekown\Laracore5\App\Audit\Flow\Login\Processing as LoginProcessingLogger;
 use Ekown\Laracore5\App\Audit\Logger;
 
 class LaracoreServiceProvider extends ServiceProvider
@@ -32,12 +33,11 @@ class LaracoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->alias('logger', Logger::class);
-        $this->app->alias('form', Form::class);
+        $this->app->alias('login.form', LoginFormLogger::class);
+        $this->app->alias('login.processing', LoginProcessingLogger::class);
 
         $this->app->bind('logger', function(){
-
             $loggerConfig = config('laracore.audit');
-
             return new Logger(
                 $loggerConfig['path'],
                 $loggerConfig['minimum_level'],
@@ -45,8 +45,14 @@ class LaracoreServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bind('form', function(){
-            return new Form(
+        $this->app->bind('login.form', function(){
+            return new LoginFormLogger(
+                resolve('logger')
+            );
+        });
+
+        $this->app->bind('login.processing', function(){
+            return new LoginProcessingLogger(
                 resolve('logger')
             );
         });
@@ -61,7 +67,8 @@ class LaracoreServiceProvider extends ServiceProvider
     {
         return [
             'logger',
-            'form'
+            'form',
+            'processing'
         ];
     }
 }

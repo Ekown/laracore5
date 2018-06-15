@@ -20,18 +20,11 @@ class ComposerStaticInite218c2f9d399990351e36ca3213ebe7e
         ),
     );
 
-    public static $classMap = array (
-        'Ekown\\Laracore5\\App\\Audit\\Flow\\Form' => __DIR__ . '/../..' . '/src/app/Audit/Flow/Form.php',
-        'Ekown\\Laracore5\\Facades\\Form' => __DIR__ . '/../..' . '/src/Facades/Form.php',
-        'Ekown\\Laracore5\\LaracoreServiceProvider' => __DIR__ . '/../..' . '/src/LaracoreServiceProvider.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInite218c2f9d399990351e36ca3213ebe7e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInite218c2f9d399990351e36ca3213ebe7e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInite218c2f9d399990351e36ca3213ebe7e::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -35,7 +35,8 @@
                 "Ekown\\Laracore5\\LaracoreServiceProvider"
             ],
             "aliases": {
-                "Form": "Ekown\\Laracore5\\Facades\\Form"
+                "LoginFormLogger": "Ekown\\Laracore5\\Facades\\Login\\Form",
+                "LoginProcessingLogger": "Ekown\\Laracore5\\Facades\\Login\\Processing"
             }
         }
     }
